@@ -1,0 +1,45 @@
+<app-header></app-header>
+<div class="form-container">
+  <div class="ui big label" *ngIf="expenseList.length === 0;else elseBlock">Currently, you haven't added any expenses yet.</div>
+  <ng-template #elseBlock>
+  <table class="ui very basic table">
+    <thead>
+      <tr>
+        <th>Expense Name</th>
+        <th>Details</th>
+        <th>Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of expenseList">
+        <td>{{ expense.expenseName }}</td>
+        <td>{{ expense.details }}</td>
+        <td>{{ expense.amount | currency:'USD' }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </ng-template>
+
+  <form class="ui form">
+    <div class="two fields">
+      <div class="field">
+        <label>Expense Name</label>
+        <input id="expenseName" type="text" name="expense-name" placeholder="Enter expense name..." #expenseName>
+      </div>
+      <div class="field">
+        <label>Amount</label>
+        <input id="amount" type="text" name="amount" placeholder="Enter amount..." #amount>
+      </div>
+    </div>
+    <div class="field">
+      <label>Details</label>
+      <textarea id="details" rows="2" #details></textarea>
+    </div>
+  </form>
+  <button class="ui primary button right floated" [disabled]="expenseList.length === 0" (click)="emailExpenses()">Email Expense</button>
+  <button class="ui basic button right floated" (click)="addExpenseForm(expenseName.value, amount.value, details.value)">Add Expense</button>
+</div>
+<app-expense-modal [showModal]="showModal" (hideModal)="hideModal($event)" [expenseList]="expenseList"></app-expense-modal>
+

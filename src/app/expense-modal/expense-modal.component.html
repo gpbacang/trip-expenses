@@ -1,0 +1,24 @@
+<div class="ui modal">
+  <i class="close icon" (click)="onHideModal()"></i>
+  <div class="header">
+    Email Expense
+  </div>
+  <form class="ui form">
+    <div class="field">
+      <label>Sender Name</label>
+      <input type="text" name="expense-name" placeholder="Enter sender name..." #name>
+    </div>
+    <div class="field">
+      <label>From Email</label>
+      <input type="text" name="amount" placeholder="Enter your email..." #fromEmail>
+    </div>
+    <div class="field">
+      <label>To Email</label>
+      <input type="text" name="amount" placeholder="Enter recepient email..." #toEmail>
+    </div>
+  </form>
+  <div class="actions">
+    <button class="ui button" (click)="onHideModal()">Cancel</button>
+    <button class="ui primary button" (click)="sendEmail(name.value, fromEmail.value, toEmail.value)">Send</button>
+  </div>
+</div>
